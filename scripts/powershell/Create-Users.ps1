@@ -1,15 +1,8 @@
-<#
-.PURPOSE
-Creates Active Directory users from a CSV file.
+# PURPOSE - creates Active Directory users from a CSV file.
 
-.DESCRIPTION
-Imports user information from a CSV file and creates each user
-in the appropriate departmental OU.
+# DESCRIPTION - Imports user information from a CSV file and creates each user in the appropriate department's OU.
 
-.REQUIREMENTS
-- Active Directory PowerShell module
-- Appropriate permissions to create AD users
-#>
+# REQUIREMENTS - Active Directory PowerShell module, appropriate permissions to create AD users.
 
 Import-Module ActiveDirectory
 
