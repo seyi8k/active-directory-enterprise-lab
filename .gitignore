@@ -1,7 +1,22 @@
 *.tmp
 *.log
 
-data/users.csv
+*.iso
+*.vhd
+*.vhdx
+*.vmcx
+*.vmrs
 
-*.psd1
-*.psm1
+.env
+*.key
+*.pem
+*.pfx
+*.cer
+secrets/
+credentials/
+
+*.clixml
+
+Thumbs.db
+.DS_Store
+.vscode/
