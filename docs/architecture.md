@@ -65,6 +65,7 @@ flowchart TD
     CLIENT01 -->|"Authentication / DNS"| DC01
     CLIENT01 -->|"SMB File Access"| SRV01
     CLIENT01 -.->|"DHCP Lease"| SRV01
+```
 
 ## Virtual Network
 
