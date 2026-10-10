@@ -16,7 +16,7 @@ The goal of this project is to build hands-on experience with Windows administra
 **Domain:** `corp.adlab.test`  
 **Lab Network:** `10.10.10.0/24`
 
-For the full network and Active Directory design, see [Architecture](./docs/01-architecture.md).
+For the full network and Active Directory design, see [Architecture](./docs/architecture.md).
 
 ## Features
 
@@ -44,21 +44,6 @@ data/users.csv
 
 Planned improvements include duplicate checks, logging, validation, group assignment, and error handling.
 
-## Documentation
-
-Detailed documentation is available in the [`docs`](./docs/) directory:
-
-- [Architecture](./docs/01-architecture.md)
-- [Hyper-V Networking](./docs/02-hyperv-networking.md)
-- [Domain Controller](./docs/03-domain-controller.md)
-- [Active Directory](./docs/04-active-directory.md)
-- [Client Domain Join](./docs/05-client-join.md)
-- [Group Policy](./docs/06-group-policy.md)
-- [DHCP and DNS](./docs/07-dhcp-dns.md)
-- [File Services](./docs/08-file-services.md)
-- [Security](./docs/09-security.md)
-- [Troubleshooting](./docs/10-troubleshooting.md)
-
 ## Troubleshooting
 
 Problems encountered during the build are documented using:
@@ -73,7 +58,7 @@ Validation
 Lesson Learned
 ```
 
-See [Troubleshooting](./docs/10-troubleshooting.md) for full write-ups.
+See [Troubleshooting](./docs/troubleshooting.md) for full write-ups.
 
 ## Skills Demonstrated
 
@@ -113,3 +98,9 @@ See [Troubleshooting](./docs/10-troubleshooting.md) for full write-ups.
 - Second Domain Controller
 - AD replication testing
 - Ubuntu Server integration
+- Additional Group Policy configurations
+- Windows LAPS
+- Expanded PowerShell automation
+- Additional Windows clients
+- Linux authentication using Active Directory
+- Centralized logging and monitoring
