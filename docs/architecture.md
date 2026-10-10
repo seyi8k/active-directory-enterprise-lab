@@ -202,33 +202,3 @@ Server roles were divided between systems where practical.
 DC01 focuses primarily on identity and DNS services, while SRV01 provides services such as DHCP and file sharing.
 
 This provides experience managing multiple servers and more closely represents a real organizational environment.
-
-## Planned Expansion
-
-Future additions to the lab may include:
-
-- Additional Group Policy configurations
-- Windows LAPS
-- Second Domain Controller
-- Active Directory replication testing
-- Expanded PowerShell automation
-- Additional Windows clients
-- Ubuntu Server integration
-- Linux authentication using Active Directory
-- Centralized logging and monitoring
-
-## Architecture Goals
-
-The overall architecture is designed to demonstrate practical experience with:
-
-- Windows Server administration
-- Active Directory
-- DNS and DHCP
-- IP addressing and subnetting
-- Hyper-V networking
-- Network Address Translation
-- Group Policy
-- Identity and access management
-- PowerShell automation
-- Troubleshooting
-- Windows and Linux integration
