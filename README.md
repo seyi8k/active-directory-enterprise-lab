@@ -9,7 +9,7 @@ The goal of this project is to develop practical experience in systems administr
 ```mermaid
 flowchart TD
     Internet["Internet"]
-    Router["Home Router - 192.168.0.1"]
+    Router["Home Router - 10.0.0.1"]
     Host["Windows 11 Pro - Hyper-V"]
     NAT["WinNAT - Gateway 10.10.10.1"]
     Switch["ADLab-Switch - 10.10.10.0/24"]
@@ -23,19 +23,19 @@ flowchart TD
         DC01["DC01 - AD DS / DNS"]
         SRV01["SRV01 - DHCP / File Services"]
         CLIENT01["CLIENT01 - Windows 11"]
-        LINUX01["LINUX01 - Ubuntu Server"]
+        LNX01["LNX01 - Ubuntu Server"]
         IDSYNC01["IDSYNC01 - Cloud Sync Agent"]
     end
 
     Switch --- DC01
     Switch --- SRV01
     Switch --- CLIENT01
-    Switch --- LINUX01
+    Switch --- LNX01
     Switch --- IDSYNC01
 
     CLIENT01 -->|Authentication / DNS| DC01
     CLIENT01 -->|SMB / DHCP| SRV01
-    LINUX01 -->|AD Authentication / DNS| DC01
+    LNX01 -->|AD Authentication / DNS| DC01
 
     Entra["Microsoft Entra ID"]
     IDSYNC01 -->|Outbound Identity Sync| Entra
@@ -46,7 +46,7 @@ flowchart TD
 | DC01 | Active Directory Domain Services, DNS |
 | SRV01 | DHCP, File Services |
 | CLIENT01 | Windows 11 domain workstation |
-| LINUX01 | Ubuntu Server, AD authentication |
+| LNX01 | Ubuntu Server, AD authentication |
 | IDSYNC01 | Microsoft Entra Cloud Sync |
 | Windows 11 Host | Hyper-V and NAT |
 

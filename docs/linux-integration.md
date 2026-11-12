@@ -8,8 +8,8 @@ Integrated an Ubuntu Server into the existing Windows Active Directory environme
 
 | Setting | Value |
 |---|---|
-| Hostname | LINUX01 |
-| Operating System | Ubuntu Server |
+| Hostname | LNX01 |
+| Operating System | Ubuntu Server 26.04 LTS |
 | Hypervisor | Hyper-V |
 | Network | 10.10.10.0/24 |
 | Domain | corp.adlab.test |
@@ -20,7 +20,7 @@ Integrated an Ubuntu Server into the existing Windows Active Directory environme
 1. Deployed Ubuntu Server on Hyper-V using the `ADLab-Switch` internal network.
 2. Configured networking to use DC01 for DNS resolution.
 3. Installed `realmd`, `SSSD`, and `adcli` for Active Directory integration.
-4. Joined LINUX01 to the `corp.adlab.test` domain.
+4. Joined LNX01 to the `corp.adlab.test` domain.
 5. Configured domain user authentication.
 
 ## Validation
