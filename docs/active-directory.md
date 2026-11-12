@@ -12,6 +12,7 @@ flowchart TD
     Users --> HR[HR]
     Users --> Finance[Finance]
     Users --> Management[Management]
+    Users --> HybridSync[HybridSync]
 
     Corp --> Computers[Computers]
     Computers --> Workstations[Workstations]
@@ -30,6 +31,8 @@ Active Directory is used to centrally manage users, computers, and security grou
 - Created departmental OUs for IT, HR, Finance, and Management.
 - Created domain users using PowerShell and a CSV file.
 - Implemented security groups to manage departmental access.
+- Created a `HybridSync` OU to scope Microsoft Entra Cloud Sync to test accounts only.
+- Created access groups for Remote Desktop on workstations and SSH on the Linux server.
 
 ### Security Groups
 
@@ -40,6 +43,13 @@ All groups are stored in the [Corp\Groups](../screenshots/security/security_grou
 | GG_HR_Users | DL_HR_RW | `\\SRV01\HR` |
 | GG_Finance_Users | DL_Finance_RW | `\\SRV01\Finance` |
 | GG_IT_Users | DL_IT_RW | `\\SRV01\IT` |
+
+**Access control groups**
+
+| Group | Purpose |
+|---|---|
+| GG_Workstation_RDP_Users | Remote Desktop sign-in on workstations, enforced by `GPO-Workstation-RDP` |
+| GG_Linux_SSH_Users | SSH sign-in to LNX01, enforced by `realm permit` |
 
 This lab implements the **AGDLP** model:
 

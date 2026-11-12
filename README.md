@@ -94,8 +94,6 @@ PowerShell scripts are used to automate common administration tasks.
 
 Run it from the repository root: `.\scripts\powershell\New-ADUsersFromCsv.ps1`
 
-Planned improvements include duplicate checks, logging, validation, group assignment, and error handling.
-
 ## Documentation
 
 - [Lab Architecture](./docs/architecture.md)

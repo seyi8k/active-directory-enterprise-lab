@@ -33,15 +33,23 @@ flowchart TD
     subgraph Lab["Active Directory Lab - 10.10.10.0/24"]
         DC01["DC01 - 10.10.10.10 - AD DS / DNS"]
         SRV01["SRV01 - 10.10.10.20 - DHCP / File Services"]
+        LNX01["LNX01 - 10.10.10.30 - Ubuntu Server"]
+        IDSYNC01["IDSYNC01 - 10.10.10.40 - Cloud Sync Agent"]
         CLIENT01["CLIENT01 - DHCP - Windows 11"]
     end
+
+    Entra["Microsoft Entra ID"]
 
     Internet <--> Router
     Router <--> NIC
 
     Switch <--> DC01
     Switch <--> SRV01
+    Switch <--> LNX01
+    Switch <--> IDSYNC01
     Switch <--> CLIENT01
+
+    IDSYNC01 -.->|Outbound identity sync| Entra
 ```
 
 The lab uses the private subnet:
@@ -81,8 +89,8 @@ NAT is configured for:
 | DC01 | Windows Server 2025 | `10.10.10.10` | Domain Controller, AD DS, DNS |
 | SRV01 | Windows Server 2025 | `10.10.10.20` | DHCP and File Services |
 | CLIENT01 | Windows 11 Enterprise | DHCP | Domain-joined workstation |
-
-This is what I've implemented so far, additional systems may be added as the lab expands.
+| LNX01 | Ubuntu Server 26.04 LTS | `10.10.10.30` | Linux server, AD authentication |
+| IDSYNC01 | Windows Server 2025 | `10.10.10.40` | Microsoft Entra Cloud Sync agent |
 
 ## Active Directory Design
 
@@ -112,7 +120,8 @@ corp.adlab.test
     │   ├── IT
     │   ├── HR
     │   ├── Finance
-    │   └── Management
+    │   ├── Management
+    │   └── HybridSync
     |
     ├── Computers
     │   ├── Workstations
@@ -155,6 +164,8 @@ For example:
 10.10.10.1      Gateway
 10.10.10.10     DC01
 10.10.10.20     SRV01
+10.10.10.30     LNX01
+10.10.10.40     IDSYNC01
 
 10.10.10.100+   DHCP clients
 ```
