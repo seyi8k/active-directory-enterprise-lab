@@ -1,46 +1,44 @@
 # Active Directory Enterprise Lab
 
-A Windows enterprise homelab built with Hyper-V, Windows Server 2025, Windows 11 Enterprise, Active Directory Domain Services, DNS, DHCP, Group Policy, file services, and PowerShell.
+A hybrid enterprise homelab built using Hyper-V, Windows Server 2025, Windows 11 Enterprise, Ubuntu Server, Active Directory Domain Services, and Microsoft Entra ID.
 
-The goal of this project is to build practical experience with Windows administration, networking, identity management, automation, and troubleshooting.
+The goal of this project is to develop practical experience in systems administration, networking, identity management, automation, security, and troubleshooting.
 
 ## Lab Overview
 
 ```mermaid
 flowchart TD
+    Internet["Internet"]
+    Router["Home Router - 192.168.0.1"]
+    Host["Windows 11 Pro - Hyper-V"]
+    NAT["WinNAT - Gateway 10.10.10.1"]
+    Switch["ADLab-Switch - 10.10.10.0/24"]
 
-    Internet([Internet])
-    Router[Router<br/>10.0.0.1]
-    Host[Windows 11 Pro Host<br/>Hyper-V]
+    Internet --- Router
+    Router --- Host
+    Host --- NAT
+    NAT --- Switch
 
-    Internet <--> Router
-    Router <--> Host
-
-    subgraph HyperV["Hyper-V Virtualization Layer"]
-        NAT["WinNAT<br/>Lab Network: 10.10.10.0/24"]
-        Switch["ADLab-Switch<br/>Internal Virtual Switch<br/>Host Interface: 10.10.10.1"]
-
-        NAT <--> Switch
-
-        subgraph Lab["AD Lab"]
-
-            DC01["DC01<br/>Windows Server 2025<br/>10.10.10.10<br/>AD DS + DNS<br/>corp.adlab.test"]
-
-            SRV01["SRV01<br/>Windows Server 2025<br/>10.10.10.20<br/>DHCP + File Services"]
-
-            CLIENT01["CLIENT01<br/>Windows 11 Enterprise<br/>DHCP: 10.10.10.100+<br/>Domain Joined"]
-        end
-
-        Switch <--> DC01
-        Switch <--> SRV01
-        Switch <--> CLIENT01
+    subgraph Lab["Active Directory Homelab"]
+        DC01["DC01 - AD DS / DNS"]
+        SRV01["SRV01 - DHCP / File Services"]
+        CLIENT01["CLIENT01 - Windows 11"]
+        LINUX01["LINUX01 - Ubuntu Server"]
+        IDSYNC01["IDSYNC01 - Cloud Sync Agent"]
     end
 
-    Host <--> NAT
+    Switch --- DC01
+    Switch --- SRV01
+    Switch --- CLIENT01
+    Switch --- LINUX01
+    Switch --- IDSYNC01
 
-    CLIENT01 -->|"Authentication / DNS"| DC01
-    CLIENT01 -->|"SMB File Access"| SRV01
-    CLIENT01 -.->|"DHCP Lease"| SRV01
+    CLIENT01 -->|Authentication / DNS| DC01
+    CLIENT01 -->|SMB / DHCP| SRV01
+    LINUX01 -->|AD Authentication / DNS| DC01
+
+    Entra["Microsoft Entra ID"]
+    IDSYNC01 -->|Outbound Identity Sync| Entra
 ```
 
 | System | Role |
@@ -48,32 +46,26 @@ flowchart TD
 | DC01 | Active Directory Domain Services, DNS |
 | SRV01 | DHCP, File Services |
 | CLIENT01 | Windows 11 domain workstation |
+| LINUX01 | Ubuntu Server, AD authentication |
+| IDSYNC01 | Microsoft Entra Cloud Sync |
 | Windows 11 Host | Hyper-V and NAT |
 
 **Domain:** `corp.adlab.test`  
 **Lab Network:** `10.10.10.0/24`
 
-## Features
+## Features Implemented
 
-- Active Directory Domain Services
-- Active Directory-integrated DNS
-- DHCP
-- Organizational Unit (OU)
-- Domain users and groups
-- Windows domain joins
-- Group Policy
-- File and NTFS permissions
-- PowerShell automation
-- Hyper-V networking and NAT
-- Troubleshooting documentation
-
-## Documentation
-
-- [Lab Architecture](./docs/architecture.md)
-- [Active Directory](./docs/active-directory.md)
-- [Group Policy](./docs/group-policy.md)
-- [File Services](./docs/file-services.md)
-- [Troubleshooting](./docs/troubleshooting.md)
+- Active Directory Domain Services and DNS
+- DHCP and Windows domain joining
+- Organizational Units, users, and security groups
+- Group Policy and workstation configuration
+- SMB file sharing and NTFS permissions
+- User provisioning with PowerShell scripts
+- Hyper-V virtual networking and NAT
+- Ubuntu Server Active Directory integration
+- Microsoft Entra Cloud Sync
+- Hybrid identity management
+- Troubleshooting and documentation
 
 ## Role-Based Access Demonstration
 
@@ -104,41 +96,24 @@ Run it from the repository root: `.\scripts\powershell\New-ADUsersFromCsv.ps1`
 
 Planned improvements include duplicate checks, logging, validation, group assignment, and error handling.
 
+## Documentation
+
+- [Lab Architecture](./docs/architecture.md)
+- [Active Directory](./docs/active-directory.md)
+- [Group Policy](./docs/group-policy.md)
+- [File Services](./docs/file-services.md)
+- [Linux Server Integration](./docs/linux-integration.md)
+- [Hybrid Identity Integration](./docs/hybrid-identity.md)
+- [Troubleshooting](./docs/troubleshooting.md)
+
 ## Skills Demonstrated
 
-- Windows Server administration
-- Active Directory
-- DNS and DHCP
-- Group Policy
-- Hyper-V
-- PowerShell
-- IPv4 networking
-- Identity and access management
-- Windows troubleshooting
-
-## Project Status
-
-### Completed
-- Hyper-V internal network
-- NAT connectivity
-- DC01 deployment
-- Active Directory forest
-- DNS
-- OU structure
-- User creation
-- PowerShell provisioning
-- CLIENT01 domain join
-- SRV01 deployment
-- DHCP role and AD authorization
-- DHCP client configuration
-- Group Policy
-- File services
-- Security groups
-- Permissions
-
-### In Progress
-- Expanded PowerShell automation
-
-### Planned
-- Hybrid identity management (Microsoft Entra ID)
-- Linux Server integration
+- Windows Server and Linux administration
+- Active Directory and Microsoft Entra ID
+- Hybrid identity synchronization
+- DNS, DHCP, and TCP/IP networking
+- Hyper-V virtualization
+- Group Policy and access control
+- PowerShell automation
+- Kerberos and centralized authentication
+- Troubleshooting and technical documentation
