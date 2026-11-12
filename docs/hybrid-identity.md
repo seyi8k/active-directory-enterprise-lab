@@ -27,10 +27,10 @@ This integration demonstrates hybrid identity management between traditional Win
 
 ## Validation
 
-![Cloud Sync agent status](../active-directory-enterprise-lab/screenshots/azure/cloud-sync-agent.png)
+![Cloud Sync agent status](../screenshots/azure/cloud-sync-agent.png)
 
-![Synchronization Scope](../active-directory-enterprise-lab/screenshots/azure/sync-config.png)
+![Synchronization Scope](../screenshots/azure/sync-config.png)
 
-![Synchronized accounts in the Entra admin center](../active-directory-enterprise-lab/screenshots/azure/synced-users.png)
+![Synchronized accounts in the Entra admin center](../screenshots/azure/synced-users.png)
 
-![On-premises directory objects provisioned into the cloud](../active-directory-enterprise-lab/screenshots/azure/on-prem-OU-synced.png)
+![On-premises directory objects provisioned into the cloud](../screenshots/azure/on-prem-OU-synced.png)
