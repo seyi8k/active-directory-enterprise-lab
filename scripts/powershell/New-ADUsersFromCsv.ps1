@@ -13,7 +13,7 @@ $CsvPath = ".\data\users.csv"
 $TestCsvPath = Test-Path $CsvPath
 
 # Verify the CSV exists before proceeding
-if($TestCsvPath -eq $false) {
+if ($TestCsvPath -eq $false) {
      Write-Host "Cannot find CSV file at $CsvPath. Please check the path and try again." -ForegroundColor Red
      return
 }
@@ -26,18 +26,34 @@ $Users = Import-Csv $CsvPath
 
 foreach ($User in $Users) {
   
-  $SamAccountName = $User.Username
+     $SamAccountName = $User.Username
 
-  $OUPath = "OU=$($User.OU),OU=Users,OU=Corp,DC=corp,DC=adlab,DC=test"
+     $OUPath = "OU=$($User.OU),OU=Users,OU=Corp,DC=corp,DC=adlab,DC=test"
 
-  New-ADUser  -Name "$($User.FirstName) $($User.LastName)" `
-              -GivenName $User.FirstName `
-              -Surname $User.LastName `
-              -SamAccountName $SamAccountName `
-              -UserPrincipalName "$SamAccountName@corp.adlab.test" `
-              -Department $User.Department `
-              -Path $OUPath `
-              -AccountPassword $Password `
-              -ChangePasswordAtLogon $true `
-              -Enabled $true
+     # 1. Check if the user already exists in Active Directory
+     if (Get-ADUser -Filter "SamAccountName -eq '$SamAccountName'") {
+          Write-Host "User $SamAccountName already exists. Skipping." -ForegroundColor Yellow
+          continue
+     }
+     # 2. Attempt to create the user
+     try {
+          New-ADUser `
+               -Name "$($User.FirstName) $($User.LastName)" `
+               -GivenName $User.FirstName `
+               -Surname $User.LastName `
+               -SamAccountName $SamAccountName `
+               -UserPrincipalName "$SamAccountName@corp.adlab.test" `
+               -Department $User.Department `
+               -Path $OUPath `
+               -AccountPassword $Password `
+               -ChangePasswordAtLogon $true `
+               -Enabled $true `
+               -ErrorAction Stop
+
+          Write-Host "Successfully created user: $SamAccountName" -ForegroundColor Green
+     }
+     # 3. Catch and display any errors
+     catch {
+          Write-Host "Failed to create user $SamAccountName. Error: $($_.Exception.Message)" -ForegroundColor Red -BackgroundColor Black
+     }
 }
