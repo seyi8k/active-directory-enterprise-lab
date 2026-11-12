@@ -25,14 +25,14 @@ Integrated an Ubuntu Server into the existing Windows Active Directory environme
 
 ## Validation
 
-[Verified domain membership](../active-directory-enterprise-lab/screenshots/linux/domain-join.png)
+![Verified domain membership](../active-directory-enterprise-lab/screenshots/linux/domain-join.png)
 
-[Verified that Ubuntu could resolve an Active Directory user](../active-directory-enterprise-lab/screenshots/linux/ad-user-authentication.png)
+![Verified that Ubuntu could resolve an Active Directory user](../active-directory-enterprise-lab/screenshots/linux/ad-user-authentication.png)
 
 <table>
   <tr>
-    <td width="50%"><img src="../active-directory-enterprise-lab/screenshots/linux/ssh-login.png" alt="a successful login from an authorized user"></td>
-    <td width="50%"><img src="../active-directory-enterprise-lab/screenshots/linux/ssh-login-failure.png" alt="a failed ssh attempt from an unauthorized user"></td>
+    <td width="50%"><img src="/active-directory-enterprise-lab/screenshots/linux/ssh-login.png" alt="a successful login from an authorized user"></td>
+    <td width="50%"><img src="/active-directory-enterprise-lab/screenshots/linux/ssh-login-failure.png" alt="a failed ssh attempt from an unauthorized user"></td>
   </tr>
   <tr>
     <td align="center"><b>Authorized:</b> A member of the linux SSH security group is able to login to LNX01</td>
